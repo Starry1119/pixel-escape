@@ -15,12 +15,8 @@ typedef struct LadderNode_struct {
 } LadderNode;
 
 
-//------------------- \/\/\/ TOP OF TASK 1 \/\/\/ --------------------
 
 int countWordsOfLength(char* filename, int wordSize) { 
-    //---------------------------------------------------------
-    // TODO - write countWordsOfLength()    
-    //---------------------------------------------------------
     FILE* fp = fopen(filename, "r");
     if (fp == NULL) {
         return -1;
@@ -40,9 +36,6 @@ int countWordsOfLength(char* filename, int wordSize) {
 }
 
 bool buildWordArray(char* filename, char** words, int numWords, int wordSize) { 
-    //---------------------------------------------------------
-    // TODO - write buildWordArray()    
-    //---------------------------------------------------------
     FILE* fp = fopen(filename, "r");
     if (fp == NULL) {
         return false;
@@ -68,9 +61,6 @@ bool buildWordArray(char* filename, char** words, int numWords, int wordSize) {
 }
 
 int findWord(char** words, char* aWord, int loInd, int hiInd) {
-    //---------------------------------------------------------
-    // TODO - write findWord()
-    //---------------------------------------------------------
     while (loInd <= hiInd) {
         int mid = (loInd + hiInd) / 2;
         int cmp = strcmp(aWord, words[mid]);
@@ -86,24 +76,13 @@ int findWord(char** words, char* aWord, int loInd, int hiInd) {
 }
 
 void freeWords(char** words, int numWords) {
-    //---------------------------------------------------------
-    // TODO - write freeWords()
-    //---------------------------------------------------------
     for (int i = 0; i < numWords; i++) {
         free(words[i]);
     }
     free(words);
 }
 
-//---------------------- ^^^ END OF TASK 1 ^^^ ----------------------
-
-
-//------------------- \/\/\/ TOP OF TASK 2 \/\/\/ -------------------
-
 int strCmpCnt(char* str1, char* str2) {
-    //---------------------------------------------------------
-    // TODO - write strCmpCnt()
-    //---------------------------------------------------------
     int i = 0;
     int diff = 0;
     int len1 = strlen(str1);
@@ -130,9 +109,6 @@ int strCmpCnt(char* str1, char* str2) {
 }
 
 int strCmpInd(char* str1, char* str2) {
-    //---------------------------------------------------------
-    // TODO - write strCmpInd()
-    //---------------------------------------------------------
     int len1 = strlen(str1);
     int len2 = strlen(str2);
     int minlen = 0;
@@ -158,15 +134,7 @@ int strCmpInd(char* str1, char* str2) {
     return -1;
 }
 
-//---------------------- ^^^ END OF TASK 2 ^^^ ----------------------
-
-
-//------------------- \/\/\/ TOP OF TASK 3 \/\/\/ -------------------
-
 void insertWordAtFront(WordNode** ladder, char* newWord) {
-    //---------------------------------------------------------
-    // TODO - write insertWordAtFront()
-    //---------------------------------------------------------
     WordNode* newNode = (WordNode*)malloc(sizeof(WordNode));
     newNode->myWord = newWord; // The string already exists in the words array
     newNode->next = *ladder;
@@ -174,9 +142,6 @@ void insertWordAtFront(WordNode** ladder, char* newWord) {
 }
 
 int getLadderHeight(WordNode* ladder) {
-    //---------------------------------------------------------
-    // TODO - write getLadderHeight()
-    //---------------------------------------------------------
     int height = 0;
     WordNode* curr = ladder;
 
@@ -189,9 +154,6 @@ int getLadderHeight(WordNode* ladder) {
 }
 
 bool checkForValidWord(char** words, int numWords, int wordSize, WordNode* ladder, char* aWord) {
-    //---------------------------------------------------------
-    // TODO - write checkForValidWord()
-    //---------------------------------------------------------
     
     // 1. Done -> stop game
     if (strcmp(aWord, "DONE") == 0) {
@@ -227,9 +189,6 @@ bool checkForValidWord(char** words, int numWords, int wordSize, WordNode* ladde
 }
 
 bool isLadderComplete(WordNode* ladder, char* finalWord) {
-    //---------------------------------------------------------
-    // TODO - write isLadderComplete()
-    //---------------------------------------------------------
     if (ladder == NULL) {
         return false;
     }
@@ -237,9 +196,6 @@ bool isLadderComplete(WordNode* ladder, char* finalWord) {
 }
 
 WordNode* copyLadder(WordNode* ladder) {
-    //---------------------------------------------------------
-    // TODO - write copyLadder()
-    //---------------------------------------------------------
     if (ladder == NULL) {
         return NULL;
     }
@@ -264,9 +220,6 @@ WordNode* copyLadder(WordNode* ladder) {
 }
 
 void freeLadder(WordNode* ladder) {
-    //---------------------------------------------------------
-    // TODO - write freeLadder()
-    //---------------------------------------------------------
     WordNode* curr = ladder;
     while (curr != NULL) {
         WordNode* temp = curr;
@@ -275,35 +228,7 @@ void freeLadder(WordNode* ladder) {
     }
 }
 
-//---------------------- ^^^ END OF TASK 3 ^^^ ----------------------
-
-
-//------------------- \/\/\/ TOP OF TASK 4 \/\/\/ -------------------
-
 void displayIncompleteLadder(WordNode* ladder) {
-    //-------------------------------------------------------------------
-// displayIncompleteLadder() should display the C-strings in the  
-//      [ladderWords] array with the first word at the bottom, and 
-//      each successive C-string one rung higher on the ladder. 
-//      The ladder [height] is the number of words it contains.  
-//      To signify the ladder as incomplete, display three lines of  
-//      "..." at the top of the ladder. The ladder must be displayed 
-//      with an indentation of two whitespaces on every line;
-//      Ex: if the start word is "data" and final word is "code" and
-//          the incomplete ladder is data->date->gate->gave, then the
-//          output display should be as follows (where the quotation  
-//          marks are NOT a part of the actual display):
-//              "  ..."
-//              "  ..."
-//              "  ..."
-//              "  gave"
-//              "  gate"
-//              "  date"
-//              "  data" 
-//-------------------------------------------------------------------
-    //---------------------------------------------------------
-    // TODO - write displayIncompleteLadder()
-    //---------------------------------------------------------
     if (ladder == NULL) {
         printf("  ...\n  ...\n  ...\n");
         return;
@@ -321,39 +246,6 @@ void displayIncompleteLadder(WordNode* ladder) {
 }
 
 void displayCompleteLadder(WordNode* ladder) {
-//-------------------------------------------------------------------
-// displayCompleteLadder(), should display the C-strings in the  
-//      [ladderWords] array with the first word at the bottom, and  
-//      each successive C-string one rung higher on the ladder. 
-//      The ladder [height] is the number of words it contains.  
-//      In between each ladder rung, display the symbol '^' to 
-//      signify the character that changes between the two rungs of 
-//      the ladder. The ladder should be displayed with an indentation 
-//      of two whitespaces to the left of every word;
-//
-//      HINT: call strCmpInd() here
-//
-//      Ex: if the start word is "data" and final word is "code" 
-//          then the output display for a complete ladder should be  
-//          as follows (where the quotation marks are NOT a part of  
-//          the actual display):
-//              "  code"
-//              "    ^ "
-//              "  cove"
-//              "   ^  "
-//              "  cave"
-//              "  ^   "
-//              "  gave"
-//              "    ^ "
-//              "  gate"
-//              "  ^   "
-//              "  date"
-//              "     ^"
-//              "  data" 
-//-------------------------------------------------------------------
-    //---------------------------------------------------------
-    // TODO - write displayCompleteLadder()
-    //---------------------------------------------------------
     if (ladder == NULL) {
         return;
     }
@@ -388,16 +280,7 @@ void displayCompleteLadder(WordNode* ladder) {
 
 }
 
-//---------------------- ^^^ END OF TASK 4 ^^^ ----------------------
-
-
-//------------------- \/\/\/ TOP OF TASK 5 \/\/\/ -------------------
-
 void insertLadderAtBack(LadderNode** list, WordNode* newLadder) {
-    //---------------------------------------------------------
-    // TODO - write insertLadderAtBack()
-    //---------------------------------------------------------
-
     LadderNode* newNode = (LadderNode*)malloc(sizeof(LadderNode));
     newNode->topWord = newLadder;
     newNode->next = NULL;
@@ -414,9 +297,6 @@ void insertLadderAtBack(LadderNode** list, WordNode* newLadder) {
 }
 
 WordNode* popLadderFromFront(LadderNode** list) {
-    //---------------------------------------------------------
-    // TODO - write popLadderFromFront()
-    //---------------------------------------------------------
     if (*list == NULL) {
         return NULL;  // noting to pop
     }
@@ -431,9 +311,6 @@ WordNode* popLadderFromFront(LadderNode** list) {
 }
 
 void freeLadderList(LadderNode* myList) {
-    //---------------------------------------------------------
-    // TODO - write freeLadderList()
-    //---------------------------------------------------------
     LadderNode* curr = myList;
 
     while (curr != NULL) {
@@ -447,20 +324,12 @@ void freeLadderList(LadderNode* myList) {
     }
 }
 
-//---------------------- ^^^ END OF TASK 5 ^^^ ----------------------
-
-
-//------------------- \/\/\/ TOP OF TASK 6 \/\/\/ -------------------
-
 WordNode* findShortestWordLadder(   char** words, 
                                     bool* usedWord, 
                                     int numWords, 
                                     int wordSize, 
                                     char* startWord, 
                                     char* finalWord ) {
-    //---------------------------------------------------------
-    // TODO - write findShortestWordLadder()
-    //---------------------------------------------------------
 
     if (numWords <= 0) {
         return NULL;
@@ -517,12 +386,6 @@ WordNode* findShortestWordLadder(   char** words,
     freeLadderList(queue);
     return NULL;
 }
-
-//---------------------- ^^^ END OF TASK 5 ^^^ ----------------------
-
-
-//------------------- \/\/\/ TOP OF OTHERS \/\/\/ -------------------
-
 
 // randomly set a word from the dictionary word array
 void setWordRand(char** words, int numWords, int wordSize, char* aWord) {
@@ -581,29 +444,12 @@ void printList(LadderNode* list) {
     printf("\n");
 }
 
-//---------------------- ^^^ END OF OTHERS ^^^ ----------------------
-
-
-
-//-----------------------------------------------------
-// The primary application is mostly fully-develop as
-//  provided in main(); changes in main() should be
-//  limited to updates made for the game play task(s)
-//  and testing-related purposes (such as command-line
-//  arguments for "TESTING MODE" to call a test case 
-//  master function, or something similar)
-//-----------------------------------------------------
 int main(int argc, char* argv[]) {
 
     printf("\n");
     printf("--------------------------------------------\n");
     printf("Welcome to the CS 211 Word Ladder Generator!\n");
     printf("--------------------------------------------\n\n");
-    
-
-    //-------------- \/\/\/ TOP OF PROGRAM SETTINGS \/\/\/ --------------
-    //--- COMMAND-LINE ARGUMENTS AND/OR INTERACTIVE USER-INPUT \/\/\/ ---
-
     
     // default values for program parameters that may be set with
     //  command-line arguments
@@ -795,17 +641,6 @@ int main(int argc, char* argv[]) {
         
         // Let the user build a word ladder interactively & iteratively.
         // First, check that ladder is not too long AND not complete.
-        //-------------------------------------------------------------------
-        // TODO - PART OF Task 4 (GAME PLAY): modify the while loop condition
-        //          such that the word ladder building process continues only
-        //          if BOTH of the following conditions are met:
-        //              1. the user is NOT attempting to stop the word ladder
-        //                 building process, which occurs if the entered word
-        //                 [aWord] from the last iteration is "DONE"
-        //              2. the ladder is still incomplete; i.e. the last word
-        //                 added to ladder is not the final word;
-        //                 note: this should use a call to isLadderComplete()
-        //-------------------------------------------------------------------
         while (strcmp(aWord, "DONE") != 0 && !isLadderComplete(userLadder, finalWord)) {
             printf("The goal is to reach the final word: %s\n",finalWord);
             printf("The ladder is currently: \n");
@@ -848,28 +683,12 @@ int main(int argc, char* argv[]) {
         freeLadder(userLadder);
     }
     
-    //----------------- ^^^ END OF GAME PLAY SECTION ^^^ -----------------
-    
-    
-    //-------------- \/\/\/ TOP OF WORD LADDER SOLVER \/\/\/ --------------
-    
     printf("\n\n");
     printf("-----------------------------------------\n");
     printf("Welcome to the CS 211 Word Ladder Solver!\n");
     printf("-----------------------------------------\n");
     printf("\n");
-    
-
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // OPTIONAL EXTENTION TO FIND LONGEST WORD LADDER:
-    //  program must end with finding the shortest word ladder
-    //  (& the associated print statements); if you choose to
-    //  extend your program to find the longest word ladder,
-    //  put the long word ladder algorithm (& the associated
-    //  print statements) BEFORE the short word ladder algorithm
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    
+       
     // run the algorithm to find the shortest word ladder
     WordNode* myLadder = findShortestWordLadder(words, usedWord, numWords, wordSize, startWord, finalWord);
 
@@ -882,24 +701,9 @@ int main(int argc, char* argv[]) {
         //printLadder(myLadder);
     }
     printf("\nWord Ladder height = %d\n\n",getLadderHeight(myLadder));
-
-    //----------------- ^^^ END OF WORD LADDER SOLVER ^^^ -----------------
     
     
     //-------------- \/\/\/ TOP OF CLEAN-UP \/\/\/ --------------
-    
-    // TODO - Part of ALL Tasks:
-    //      free all heap-allocated memory to avoid potential
-    //      memory leaks. Since the word length for the word
-    //      ladder is variable (i.e. set by a command-line
-    //      argument or interactive user-input) any array
-    //      whose size depends on the word length should be
-    //      dynamically heap-allocated, and thus, must be
-    //      tracked and freed before program termination.
-    //      A big part of the memory management & freeing
-    //      is handled by the following functions, but
-    //      you may have introduced additional heap-memory
-    //      allocations, especially as part of the game play.
     
     // free the heap-allocated memory for the shortest ladder
     freeLadder(myLadder);
