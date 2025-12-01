@@ -2,7 +2,7 @@
 **UIC – CS211 Programming Practicum**  
 **Author: Shenxing Zhang**
 
-## 📌 Overview
+## Overview
 This project implements a fully interactive **Word Ladder Game** and a **shortest-path Word Ladder Solver** in C.  
 A word ladder connects one word to another by changing one letter at a time, and each intermediate step must be a valid English word.
 
@@ -15,7 +15,7 @@ The program includes:
 
 ---
 
-## 🧠 How It Works (Step-by-Step Explanation)
+## How It Works (Step-by-Step Explanation)
 
 ### **1. Build the Dictionary**
 - User chooses the word length and dictionary file.
@@ -82,7 +82,7 @@ Valgrind confirms **no leaks**.
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 word-ladder/
 │
 ├── main.c
