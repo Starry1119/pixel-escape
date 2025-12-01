@@ -81,13 +81,3 @@ The project handles:
 Valgrind confirms **no leaks**.
 
 ---
-
-## Project Structure
-word-ladder/
-│
-├── main.c
-├── makefile
-├── README.md
-├── demo.mp4 (or YouTube link)
-└── dictionary.txt (optional to upload)
-
