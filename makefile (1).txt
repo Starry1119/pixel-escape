@@ -1,0 +1,14 @@
+build:
+	gcc -g main.c -o ladders.exe
+
+run:
+	./ladders.exe
+
+run_fun:
+	./ladders.exe -p ON -n 4 -d dictionary.txt -s RAND -f RAND
+
+valgrind:
+	valgrind --tool=memcheck --leak-check=full ./ladders.exe -p ON -n 4 -d dictionary.txt -s RAND -f RAND < gameplayDemoInputs.txt
+
+clean:
+	rm -f ladders.exe main.o *.o
